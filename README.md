@@ -22,7 +22,7 @@ PassPlus is a secure and user-friendly password management application for mobil
 * Securely save usernames and passwords
 * Easy access to saved passwords
 * Option to generate strong passwords
-* Local (or cloud, if applicable) database storage
+* Local application in Hive database storage
 
 **Platform:**
 
