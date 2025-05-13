@@ -36,7 +36,7 @@ class AuthentcationController extends GetxController {
   }
 
 
-  Future<bool> authenticate()async{
+  Future<bool> optionAuthenticate()async{
 
     try{
 

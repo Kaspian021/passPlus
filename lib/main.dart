@@ -2,10 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:hive_flutter/adapters.dart';
-
-import 'package:passplus/controller/binding.dart';
-import 'package:passplus/view/addaccount_screen.dart';
-import 'package:passplus/view/home_screen.dart';
+import 'package:passplus/Page_controller/route_page.dart';
 import 'package:passplus/view/splash_screen.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 
@@ -48,12 +45,7 @@ class Main extends StatelessWidget {
         )
 
       ),
-      getPages: [
-
-        GetPage(name: NPage.homeScreen, page: () => HomeScreen(),binding: HomeScreenBinding()),
-        GetPage(name: NPage.addAccountScreen, page: ()=> AddAccountScreen())
-
-      ],
+      getPages: RoutePage.names,
       
       debugShowCheckedModeBanner: false,
       locale: Locale('en'),
@@ -62,10 +54,5 @@ class Main extends StatelessWidget {
   }
 }
 
-class NPage{
 
-  static const homeScreen= '/HomeScreen';
-  static const addAccountScreen= '/AddAccountScreen';
-
-}
 

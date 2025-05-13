@@ -2,9 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
+import 'package:passplus/Page_controller/name_page.dart';
 import 'package:passplus/controller/authtentcate_controller.dart';
 import 'package:passplus/gen/assets.gen.dart';
-import 'package:passplus/main.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -33,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
       if(await authenticatController.checkLoginUser()){
       if(await authenticatController.isBiometricsEnabeld()){
 
-        authenticatController.authenticate();
+        authenticatController.optionAuthenticate();
 
       }
     }else{

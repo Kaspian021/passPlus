@@ -10,6 +10,7 @@ class ListuspassController extends GetxController {
 
   RxBool fileDelete= false.obs;
   RxBool selectIcon= false.obs;
+  
 
   final box= Hive.box('userData');
 

@@ -30,11 +30,13 @@ class AddAccountScreen extends StatelessWidget {
                     Expanded(
                       child: Align(
                         alignment: Alignment.centerLeft,
-                        child: Text(
-                          'Add new Account',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w700,
+                        child: Hero(tag: 'addText',
+                          child: Text(
+                            'Add new Account',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w700,
+                            ),
                           ),
                         ),
                       ),
