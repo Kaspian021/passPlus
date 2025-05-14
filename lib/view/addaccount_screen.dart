@@ -2,18 +2,46 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:passplus/Animations/animation_add_screen.dart';
 import 'package:passplus/controller/listuspass_controller.dart';
 import 'package:passplus/service/serviceinapp.dart';
 
-// ignore: must_be_immutable
-class AddAccountScreen extends StatelessWidget {
-  AddAccountScreen({super.key});
 
+class AddAccountScreen extends StatefulWidget {
+  const AddAccountScreen({super.key});
+
+  @override
+  State<AddAccountScreen> createState() => _AddAccountScreenState();
+}
+
+class _AddAccountScreenState extends State<AddAccountScreen> with SingleTickerProviderStateMixin{
+
+  //controller_Getx
   final controllerUsePass = Get.put(ListuspassController());
 
+  //variable_TextFilde.obs
   RxBool verifyEmail = false.obs;
   RxBool verifyName = false.obs;
   RxString password = ''.obs;
+
+
+  @override
+  void initState() {
+    AnimationAddScreen.controllerAdd= AnimationController(vsync: this,duration: Duration(milliseconds: 600));
+
+    AnimationAddScreen.opacityIcon = Tween<double>(begin: 0,end: 1).animate(CurvedAnimation(parent: AnimationAddScreen.controllerAdd, curve: Curves.linearToEaseOut));
+    
+    
+    AnimationAddScreen.animationColor = ColorTween(begin: Colors.orangeAccent,end: Colors.blueAccent).animate(CurvedAnimation(parent: AnimationAddScreen.controllerAdd, curve: Curves.linearToEaseOut));
+    if(AnimationAddScreen.animationColor.isCompleted){
+
+      AnimationAddScreen.controllerAdd.repeat();
+    }
+    AnimationAddScreen.controllerAdd.repeat();
+    
+    super.initState();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +53,7 @@ class AddAccountScreen extends StatelessWidget {
             padding: const EdgeInsets.all(15.0),
             child: Column(
               children: [
+                //Title_Screen
                 Row(
                   children: [
                     Expanded(
@@ -50,13 +79,16 @@ class AddAccountScreen extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 10),
+                //icon_Selected
                 GestureDetector(
                   onTap: () async {
                     await filePickerIcon();
                   },
                   child: Column(
                     children: [
-                      Container(
+                      AnimatedBuilder(animation: CurvedAnimation(parent: AnimationAddScreen.controllerAdd, curve: Curves.elasticInOut), builder: (context, child) {
+                        
+                        return Container(
                         width: Get.width / 2,
                         height: Get.height / 11.8,
                         decoration: BoxDecoration(
@@ -73,25 +105,34 @@ class AddAccountScreen extends StatelessWidget {
                           child:
                               controllerUsePass.file.value.name == 'not' ||
                                       controllerUsePass.fileDelete.value == true
-                                  ? Icon(
-                                    Icons.image,
-                                    color: Colors.blue,
-                                    size: 30,
+                                  ? AnimatedOpacity(
+                                    alwaysIncludeSemantics: true,
+                                    curve: Curves.bounceOut,
+                                    opacity: AnimationAddScreen.opacityIcon.value,
+                                    duration: Duration(milliseconds: 500),
+                                    child: Icon(
+                                      Icons.image,
+                                      color: Colors.blue,
+                                      size: 30,
+                                    ),
                                   )
                                   : Image.file(
                                     File(controllerUsePass.file.value.path!),
                                     fit: BoxFit.contain,
                                   ),
                         ),
-                      ),
+                      );
+                      
+                      },),
                       SizedBox(height: 5),
-                      Text('Chenge icon', style: TextStyle(color: Colors.blue)),
+                      Text('Chenge icon', style: TextStyle(color: AnimationAddScreen.animationColor.value)),
                     ],
                   ),
                 ),
 
                 SizedBox(height: 15),
-
+                
+                //text_Name
                 TextField(
                   onChanged: (value) {
                     if (value.isNotEmpty) {
@@ -115,10 +156,23 @@ class AddAccountScreen extends StatelessWidget {
                       color:
                           verifyName.value == true ? Colors.green : Colors.red,
                     ),
-                    icon: Icon(Icons.wordpress_sharp, size: 30),
+                    icon: TweenAnimationBuilder(
+                      curve: Curves.easeInOutQuart,
+                      builder: (context,size,widget) {
+                        return Icon(Icons.wordpress_sharp, size: size);
+                      }, tween: Tween<double>(
+                        begin: 0,
+                        end: 30
+
+                      ), duration: const Duration(
+                        milliseconds: 1300
+                      ),
+                    ),
                   ),
                 ),
                 SizedBox(height: 20),
+
+                ////text_userName
                 TextField(
                   onChanged: (value) {
                     if (value.isPhoneNumber || value.isEmail) {
@@ -141,10 +195,22 @@ class AddAccountScreen extends StatelessWidget {
                       color:
                           verifyEmail.value == true ? Colors.green : Colors.red,
                     ),
-                    icon: Icon(Icons.phone_iphone_rounded, size: 30),
+                    icon: TweenAnimationBuilder(
+                      curve: Curves.easeInOutQuart,
+                      builder: (context,size,widget) {
+                        return Icon(Icons.phone_iphone_rounded, size: size);
+                      }, tween: Tween<double>(
+                        begin: 0,
+                        end: 30
+
+                      ), duration: const Duration(
+                        milliseconds: 1300
+                      ),),
                   ),
                 ),
                 SizedBox(height: 20),
+
+                //text_userPassword
                 TextField(
                   onChanged: (value) {
                     password.value = value;
@@ -173,7 +239,16 @@ class AddAccountScreen extends StatelessWidget {
                           password.value.isNotEmpty ? Colors.green : Colors.red,
                     ),
 
-                    icon: Icon(Icons.lock_outlined, size: 30),
+                    icon: TweenAnimationBuilder(curve: Curves.easeInOutQuart,
+                      builder: (context,size,widget) {
+                        return Icon(Icons.lock_outline_rounded, size: size);
+                      }, tween: Tween<double>(
+                        begin: 0,
+                        end: 30
+
+                      ), duration: const Duration(
+                        milliseconds: 1300
+                      ),)
                   ),
                 ),
                 SizedBox(height: 20),
@@ -224,4 +299,5 @@ class AddAccountScreen extends StatelessWidget {
       ),
     );
   }
+  
 }
