@@ -5,10 +5,10 @@ class AnimationListHome {
 
   AnimationListHome._();
 
-  static late final AnimationController controller;
-  static late final Animation<double> animationIconEye;
-  static late final Animation<Color?> animationColorIcon;
-  static late final Animation<Color?> animationColorWidgetCart;
-  static late final Animation<double> animationContainer;
+  static late  AnimationController controller;
+  static late  Animation<double> animationIconEye;
+  static late  Animation<Color?> animationColorIcon;
+  static late  Animation<Color?> animationColorWidgetCart;
+  static late  Animation<double> animationContainer;
 
 }

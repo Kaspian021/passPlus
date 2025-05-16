@@ -7,9 +7,9 @@ class AnimationHomeScreen {
 
 
   //Animations
-  static late final AnimationController controller;
-  static late final Animation<Offset> animationSlide;
-  static late final Animation<Offset> animation_;
+  static late  AnimationController controller;
+  static late  Animation<Offset> animationSlide;
+  static late  Animation<Offset> animation_;
 
 
 }

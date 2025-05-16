@@ -299,5 +299,13 @@ class _AddAccountScreenState extends State<AddAccountScreen> with SingleTickerPr
       ),
     );
   }
+
+  @override
+  void dispose() {
+    
+    AnimationAddScreen.controllerAdd.dispose();
+
+    super.dispose();
+  }
   
 }

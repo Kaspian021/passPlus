@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "447663981798",
+    "project_id": "passplus-e532b",
+    "storage_bucket": "passplus-e532b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:447663981798:android:979a676b0853efa2c2a727",
+        "android_client_info": {
+          "package_name": "com.example.passplus"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLH0Hzm5pRAE7DYPDr0ci4dbWWalEbiEw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -42,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen>
     //controller_Animation
     AnimationHomeScreen.controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 2),
+      duration: Duration(milliseconds: 1300),
     );
     
     //Animations
@@ -52,13 +52,7 @@ class _HomeScreenState extends State<HomeScreen>
     ).animate(AnimationHomeScreen.controller);
     AnimationHomeScreen.controller.forward();
 
-    AnimationHomeScreen.animationSlide.addListener((){
-
-      if(AnimationHomeScreen.animationSlide.isCompleted){
-        AnimationHomeScreen.controller.forward();
-      }
-
-    });
+    
     super.initState();
   }
 
@@ -125,17 +119,13 @@ class _HomeScreenState extends State<HomeScreen>
                       child: GestureDetector(
                         onTap: () {
                           controllerListItem.fileDelete.value = true;
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => AddAccountScreen(),
-                              allowSnapshotting: true,
-                            ),
-                          );
+                          
+                          Get.to(()=> AddAccountScreen(),curve: Curves.elasticInOut,duration: Duration(milliseconds: 300));
                         },
                         child: Padding(
-                          padding:  EdgeInsets.only(bottom: 50,right: Get.height/8,left: Get.height/8),
+                          padding:  EdgeInsets.only(bottom: 50,right: Get.width/4,left: Get.width/3.5),
                           child: SlideTransition(
+                            
                             position: AnimationHomeScreen.animationSlide,
                             child: Container(
                               
@@ -156,8 +146,8 @@ class _HomeScreenState extends State<HomeScreen>
                                     Hero(
                                       tag: 'addText',
                           
-                          
-                                      child: Text("Add new Account"),
+
+                                      child: Text("Add new Account",style: TextStyle(fontWeight: FontWeight.bold),),
                                     ),
                                     LottieBuilder.asset(
                                       Assets.icons.animationAddaccount,
@@ -291,5 +281,11 @@ class _HomeScreenState extends State<HomeScreen>
         ],
       ),
     );
+  }
+  @override
+  void dispose() {
+    AnimationHomeScreen.controller.dispose();
+    
+    super.dispose();
   }
 }

@@ -285,4 +285,11 @@ class _ListAnimationState extends State<ListAnimation>
       ),
     );
   }
+  @override
+  void dispose() {
+    AnimationListHome.controller.dispose();
+    
+    super.dispose();
+  }
+
 }

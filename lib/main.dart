@@ -2,13 +2,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:passplus/Page_controller/name_page.dart';
 import 'package:passplus/Page_controller/route_page.dart';
-import 'package:passplus/view/splash_screen.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 void main()async{
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
 
+    options: DefaultFirebaseOptions.currentPlatform
+  );
   await initHive();
 
   
@@ -31,6 +36,7 @@ class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      initialRoute: NPage.routeSplashScreen,
       theme: ThemeData(
 
         elevatedButtonTheme: ElevatedButtonThemeData(
@@ -49,7 +55,7 @@ class Main extends StatelessWidget {
       
       debugShowCheckedModeBanner: false,
       locale: Locale('en'),
-      home: SplashScreen(),
+      
     );
   }
 }
